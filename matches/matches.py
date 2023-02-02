@@ -21,7 +21,10 @@ foods["gulabjamun"] = Food("gulab jamun", "Milk solids made into round dough bal
 foods["lokma"] = Food("lokma", "Deep fried dough balls, soaked in syrup or honey, sometimes coated with cinnamon or other ingredients", "Greece", ["gulabjamun"])
 foods["chilaquiles"] = Food("chilaquiles", "Tortilla chips soaked in salsa, with some sprinkled cheese and may have a protein like a fried egg, chicken, beef, etc.", "Mexico",["paprichat"])
 foods["paprichat"] = Food("paprichat", "Crisp fried dough wafers known as papri, along with boiled chick peas, boiled potatoes, dahi (yogurt) and tamarind chutney and topped with chat masala and sev.", "India", ["chilaquiles"])
-
+foods["bahnbohap"] = Food("bahn bo hap", "Chewy sponge rice cake made with a bit of sugar and coconut milk.", "Vietnam", ["idli"])
+foods["idli"] = Food("idli", "Savoury rice cake", "India", ["bahnbohap"])
+foods["tamales"] = Food("tamales", "Spongy food made out of corn flour dough, filled with stuffing, wrapped in a corn or banana leaf and steamed.", "Mexico", ["bahnchung"])
+foods["bahnchung"] = Food("bahn chung","Glutinous rice food, filled with mung beans, pork and other ingredients, wrapped in banana leaves and soaked or steamed.","Vietnam", ["tamales"])
 def display_info(foodie):
     print("==========================================================================")
     print(f"Meet {foodie.name.title()}.")
@@ -37,7 +40,7 @@ while True:
     print("      F    O    O    P    E    L    G    A    N    G    E    R            ")
     print("\n\n==========================================================================")
     print("Hello there!\nThis is Foopelganger.\nA small program that will let you check which food items might have a doppelganger in another part of the world.\n")
-    print("Select one the options below to start:\na) Show lookalikes of a certain food\nb) Show food items from a country\nc) Add new item")
+    print("Select one the options below to start:\na) Show lookalikes of a certain food\nb) Show food items from a country\nc) Add new item\nd) Show all items in store")
     option = input("Your selection: ")
 
     if option == 'a':
@@ -63,8 +66,13 @@ while True:
         conf = input("Which country is this food from? ")
         lookf = input("Which other food items are doppelgangers?\nPlease put a comma if it's more than one (e.g. torta,sandwich): ")
         newf = Food(namf.strip(), descf.strip(), conf.strip(), lookf.strip().split(","))
-        foods[namf.strip()] = newf
+        foods["".join(namf.strip())] = newf
         print("New item has been added!!")
         display_info(newf)
-
+    elif option == "d":
+        print("These are the food items I have in store:\n")
+        for key,fit in foods.items():
+            print(f"-{fit.name}")
+    else:
+        print("That option is not valid. Please try again.")
     os.system("pause")
