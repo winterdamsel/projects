@@ -54,7 +54,6 @@ while True:
         country = input("Which country do you want to see items from? ")
         locf = []
         for f in foods.values():
-            type(f)
             if f.country == country.title():
                 locf.append(f.name)
         allfoods = ",".join(locf)
